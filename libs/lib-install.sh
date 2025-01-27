@@ -736,7 +736,7 @@ config_firefox() {
 
   for d in "${FIREFOX_DIR}/"*"default"*; do
     rm -rf                                                                                  "${d}/chrome"
-    udo ln -sf "${TARGET_DIR}"                                                              "${d}/chrome"
+    ln -sf "${TARGET_DIR}"                                                              "${d}/chrome"
     rm -rf                                                                                  "${d}/user.js"
     udoify_file                                                                             "${d}/user.js"
     #  Enable customChrome.css
@@ -763,8 +763,8 @@ edit_firefox_theme_prefs() {
   fi
 
   [[ ! -d "${TARGET_DIR}" ]] && install_firefox_theme ; config_firefox
-  udo ${EDITOR:-nano}                                                                         "${TARGET_DIR}/userChrome.css"
-  udo ${EDITOR:-nano}                                                                         "${TARGET_DIR}/customChrome.css"
+  ${EDITOR:-nano}                                                                         "${TARGET_DIR}/userChrome.css"
+  ${EDITOR:-nano}                                                                         "${TARGET_DIR}/customChrome.css"
 }
 
 remove_firefox_theme() {
