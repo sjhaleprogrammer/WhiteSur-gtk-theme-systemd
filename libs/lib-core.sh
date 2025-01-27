@@ -225,7 +225,7 @@ stop_animation() {
   [[ "${silent_mode}" == "true" ]] && return 0
 
   [[ -e "/proc/${ANIM_PID}" ]] && kill -13 "${ANIM_PID}"
-  setterm -cursor on
+  
 }
 
 # Echo like ... with flag type and display message colors
