@@ -204,8 +204,6 @@ is_running() {
 start_animation() {
   [[ "${silent_mode}" == "true" ]] && return 0
 
-  setterm -cursor off
-
   (
     while true; do
       for i in {0..4}; do
