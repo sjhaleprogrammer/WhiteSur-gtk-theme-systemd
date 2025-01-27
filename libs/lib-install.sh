@@ -685,8 +685,8 @@ install_firefox_theme() {
 
   remove_firefox_theme
 
-  udo mkdir -p                                                                                "${TARGET_DIR}"
-  udo cp -rf "${FIREFOX_SRC_DIR}"/customChrome.css                                            "${TARGET_DIR}"
+  mkdir -p                                                                                    "${TARGET_DIR}"
+  cp -rf "${FIREFOX_SRC_DIR}"/customChrome.css                                                "${TARGET_DIR}"
 
   mkdir -p                                                                                    "${TARGET_DIR}"
   cp -rf "${FIREFOX_SRC_DIR}/${theme_name}"                                                   "${TARGET_DIR}"
