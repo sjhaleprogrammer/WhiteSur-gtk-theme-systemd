@@ -1,0 +1,38 @@
+name: Auto Rebase from Upstream
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour (adjust as needed)
+  pull_request:
+    branches:
+      - main  # Adjust to match your default branch
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch the entire history to avoid issues with rebasing
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-email@example.com'
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/vinceliuice/WhiteSur-gtk-theme  # Replace with the upstream repo URL
+          git fetch upstream
+
+      - name: Rebase with upstream main
+        run: |
+          git checkout master # Or another branch you want to rebase
+          git rebase upstream/master  # Rebase your branch with the upstream main branch
+
+      - name: Push changes
+        run: |
+          git push origin master --force-with-lease  # Push changes back to your fork
